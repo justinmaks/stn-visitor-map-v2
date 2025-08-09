@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: visitor-map:npmnetwork
+    container_name: visitor-map-app-npmnetwork
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - DB_PATH=/app/data/visitors.db
+      - IP_SALT=change-me-in-prod
+    volumes:
+      - db-data:/app/data
+    networks:
+      - npm-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO", "-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  npm-network:
+    external: true
+
+volumes:
+  db-data: {}
