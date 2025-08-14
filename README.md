@@ -1,4 +1,4 @@
-# Visitor Map (Next.js + SQLite)
+# Visitor Map [VIEW LIVE](https://map.devmaks.biz/)
 
 A modern Next.js app that displays a global map with dots for each visitor location, plus a Stats page with charts. Data is stored in SQLite. Designed to run locally and behind Nginx/Cloudflare with proxy-aware IP detection. Docker and docker-compose included.
 
